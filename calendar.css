@@ -150,6 +150,10 @@ body {
     background: #3C82F9;
 }
 
+/* li > .calendar__day--not-in-current-month {
+    color: rgba(42, 46, 65, 0.7);
+} */
+
 .calendar__header {
     position: relative;
     margin-bottom: 24px;
@@ -292,3 +296,4 @@ flex-wrap: wrap;
     --background: #FF467E;
     --shadowcolor: #6b1c34;
 }
+
