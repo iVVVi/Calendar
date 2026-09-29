@@ -1,0 +1,712 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fjern Skog — A hidden retreat in the heart of the forest</title>
+<meta name="description" content="Fjern Skog is a secluded historic residence hidden deep within an ancient woodland. Silence, nature and distance from everyday life.">
+<meta name="theme-color" content="#16221b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#16221b;
+  --forest-2:#1d2c23;
+  --moss:#3b4a3a;
+  --paper:#e9e1d0;
+  --paper-2:#ddd3bd;
+  --ink:#1b1a16;
+  --ink-soft:#4a473d;
+  --gold:#a88f5c;
+  --gold-soft:#8d7a52;
+  --ember:#d9a25a;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --font:"Jost","Century Gothic","Avenir Next",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--font);font-weight:300;background:var(--paper);color:var(--ink);line-height:1.75;font-size:18px;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--gold);color:var(--forest)}
+
+.label{font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;font-weight:400;color:var(--gold-soft)}
+.wrap{width:min(1240px,100% - 48px);margin-inline:auto}
+
+/* page transition curtain */
+.curtain{position:fixed;inset:0;background:var(--forest);z-index:100;opacity:1;pointer-events:none;transition:opacity 1.8s var(--ease)}
+.curtain.gone{opacity:0}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:28px clamp(24px,4vw,56px);color:#efe8d6;transition:background .8s var(--ease),padding .8s var(--ease),box-shadow .8s}
+.nav.solid{background:var(--forest);padding-block:16px;box-shadow:0 1px 0 rgba(168,143,92,.25)}
+.nav__brand{font-size:1rem;letter-spacing:.34em;text-transform:uppercase;font-weight:400}
+.nav__links{display:flex;gap:clamp(18px,2.6vw,42px)}
+.nav__links a{font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;position:relative;padding:6px 0;opacity:.88;transition:opacity .4s}
+.nav__links a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease)}
+.nav__links a:hover{opacity:1}.nav__links a:hover::after{transform:scaleX(1)}
+.nav__toggle{display:none;background:none;border:0;width:48px;height:48px;position:relative;cursor:pointer;color:inherit}
+.nav__toggle span{position:absolute;left:11px;right:11px;height:1px;background:currentColor;transition:transform .6s var(--ease),top .6s var(--ease)}
+.nav__toggle span:nth-child(1){top:19px}.nav__toggle span:nth-child(2){top:28px}
+.nav__toggle.open span:nth-child(1){top:24px;transform:rotate(45deg)}
+.nav__toggle.open span:nth-child(2){top:24px;transform:rotate(-45deg)}
+
+.menu{position:fixed;inset:0;z-index:45;background:var(--forest);color:#efe8d6;display:flex;flex-direction:column;justify-content:center;padding:96px 32px 40px;opacity:0;visibility:hidden;transition:opacity .9s var(--ease),visibility .9s}
+.menu.open{opacity:1;visibility:visible}
+.menu nav{display:flex;flex-direction:column}
+.menu a{display:flex;align-items:baseline;gap:20px;font-size:clamp(1.9rem,8vw,2.6rem);font-weight:300;padding:12px 0;border-bottom:1px solid rgba(168,143,92,.2);opacity:0;transform:translateY(14px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.menu.open a{opacity:1;transform:none}
+.menu.open a:nth-child(2){transition-delay:.1s}.menu.open a:nth-child(3){transition-delay:.16s}.menu.open a:nth-child(4){transition-delay:.22s}.menu.open a:nth-child(5){transition-delay:.28s}.menu.open a:nth-child(6){transition-delay:.34s}.menu.open a:nth-child(7){transition-delay:.4s}
+.menu a i{font-style:normal;font-size:.72rem;letter-spacing:.2em;color:var(--gold);width:2.5em}
+.menu__foot{margin-top:32px;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-soft)}
+
+/* HERO */
+.hero{height:340vh;position:relative;background:#0a100c}
+.hero__sticky{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+.layer{position:absolute;inset:-6% -3%;will-change:transform}
+.layer--sky img{width:100%;height:100%;object-fit:cover;filter:saturate(.62) brightness(.72) contrast(1.05) sepia(.18)}
+.layer--sky::after{content:"";position:absolute;inset:0;background:rgba(14,22,17,.35)}
+.layer--house{pointer-events:none}
+.glow{position:absolute;width:26px;height:34px;border-radius:40%;background:radial-gradient(closest-side,rgba(240,180,90,.95),rgba(240,170,80,.35) 60%,transparent);filter:blur(5px);animation:flicker 5s ease-in-out infinite;mix-blend-mode:screen;opacity:.8}
+.glow--a{left:47%;top:52%}.glow--b{left:51%;top:53%;animation-delay:-1.7s;width:20px;height:28px}.glow--c{left:44%;top:55%;animation-delay:-3.1s;width:18px;height:24px}
+@keyframes flicker{0%,100%{opacity:.72;transform:scale(1)}40%{opacity:.95;transform:scale(1.08)}70%{opacity:.6}}
+.layer--mist1,.layer--mist2,.layer--mist3{background:
+  radial-gradient(ellipse 60% 30% at 20% 70%,rgba(200,210,195,.28),transparent 70%),
+  radial-gradient(ellipse 50% 26% at 75% 60%,rgba(200,210,195,.22),transparent 70%),
+  radial-gradient(ellipse 70% 20% at 50% 90%,rgba(210,215,200,.3),transparent 70%);
+  opacity:.55;animation:drift 40s ease-in-out infinite alternate}
+.layer--mist2{opacity:.4;animation-duration:55s;animation-direction:alternate-reverse}
+.layer--mist3{opacity:0;animation-duration:70s}
+@keyframes drift{from{background-position:-4% 0}to{background-position:6% 2%}}
+.layer--trees-far,.layer--trees-near{inset:auto -3% -6% -3%;height:100%}
+.layer--trees-far svg,.layer--trees-near svg{position:absolute;bottom:0;width:100%;height:100%}
+.layer--trees-far{height:85%}
+.layer--trees-near .tree{width:auto;height:100%;max-width:52%}
+.layer--trees-near .tree--l{left:0;right:auto}
+.layer--trees-near .tree--r{left:auto;right:0}
+.layer--trees-near .branch{position:absolute;top:-4%;bottom:auto;height:46%;width:100%;transform-origin:top center}
+.layer--veil{inset:0;background:rgba(7,11,8,.96);opacity:0;pointer-events:none}
+.layer--veil::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 55%,transparent 0,rgba(0,0,0,.35) 100%)}
+
+.hero__content{position:absolute;left:0;right:0;bottom:12vh;text-align:center;color:#efe8d6;padding:0 24px;z-index:5}
+.hero__kicker{color:#c9b98c;margin-bottom:18px;opacity:0;animation:fade 2.6s 1.2s var(--ease) forwards}
+.hero__title{font-size:clamp(3.4rem,13vw,10.5rem);font-weight:200;letter-spacing:.06em;line-height:1;text-transform:none;opacity:0;animation:fade 3s 1.6s var(--ease) forwards;text-shadow:0 2px 40px rgba(0,0,0,.6)}
+.hero__sub{margin-top:18px;font-size:clamp(1rem,2.2vw,1.35rem);letter-spacing:.14em;opacity:0;animation:fade 3s 2.2s var(--ease) forwards}
+.hero__cta{margin-top:40px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fade 3s 2.8s var(--ease) forwards}
+@keyframes fade{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.scrollcue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;color:#c9b98c;font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;z-index:5}
+.scrollcue i{width:1px;height:38px;background:linear-gradient(var(--gold),transparent);animation:cue 3s ease-in-out infinite}
+@keyframes cue{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 34px;font:400 .74rem var(--font);letter-spacing:.28em;text-transform:uppercase;border:1px solid var(--gold);cursor:pointer;transition:background .7s var(--ease),color .7s var(--ease),border-color .7s}
+.btn--solid{background:var(--gold);color:var(--forest)}
+.btn--solid:hover{background:transparent;color:var(--gold)}
+.btn--ghost{background:transparent;color:#efe8d6;border-color:rgba(239,232,214,.5)}
+.btn--ghost:hover{background:#efe8d6;color:var(--forest)}
+.btn--block{width:100%}
+
+/* CHAPTERS */
+.chapter{padding:clamp(90px,14vw,190px) 0;position:relative;background:var(--paper)}
+.chapter--dark{background:var(--forest);color:#e6dec9}
+.chapter--dark .label{color:var(--gold)}
+.ch-head{position:relative}
+.ch-num{display:block;font-size:clamp(4rem,9vw,7.5rem);font-weight:200;line-height:1;color:var(--gold);opacity:.55;letter-spacing:.04em;margin-bottom:6px}
+.ch-head h2{font-size:clamp(2.2rem,5vw,4rem);font-weight:200;letter-spacing:.04em;line-height:1.1;margin-top:10px;text-transform:none}
+.rule{display:block;width:64px;height:1px;background:var(--gold);margin-top:26px;position:relative}
+.rule::after{content:"";position:absolute;left:72px;top:-2px;width:5px;height:5px;background:var(--gold);transform:rotate(45deg)}
+.ch-head--center{text-align:center;margin-bottom:clamp(50px,8vw,100px)}
+.ch-head--center .rule{margin-inline:auto}
+.ch-head--center .rule::after{left:calc(50% + 40px);left:auto;right:-14px}
+.lead{max-width:560px;margin:28px auto 0;color:inherit;opacity:.85}
+p+p{margin-top:1.3em}
+.dropcap::first-letter{float:left;font-size:4.6em;line-height:.8;padding:.08em .12em 0 0;font-weight:200;color:var(--gold)}
+.aside{font-style:italic;color:var(--ink-soft);border-left:1px solid var(--gold);padding-left:20px}
+
+.divider{text-align:center;color:var(--gold);background:var(--paper);padding:0 0 10px;font-size:1.4rem;opacity:.7}
+
+/* GRIDS */
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(24px,3vw,44px);align-items:start}
+.fig{position:relative}
+.imgwrap{overflow:hidden;background:#2a3a30;position:relative;border:1px solid rgba(168,143,92,.35);padding:0}
+.imgwrap img{width:100%;height:112%;object-fit:cover;filter:saturate(.7) sepia(.15) brightness(.92) contrast(1.03);will-change:transform}
+.fig figcaption{margin-top:14px;font-size:.78rem;font-style:italic;letter-spacing:.04em;opacity:.75}
+.fig figcaption span{font-style:normal;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-right:10px}
+
+.grid--house .ch-head{grid-column:1/6}
+.grid--house .house__text{grid-column:1/6;grid-row:2}
+.grid--house .fig--tall{grid-column:7/13;grid-row:1/4}
+.grid--house .fig--small{grid-column:2/5;grid-row:3;margin-top:40px}
+.fig--tall .imgwrap{aspect-ratio:4/5}
+.fig--small .imgwrap{aspect-ratio:1/1}
+.fig--wide .imgwrap{aspect-ratio:16/11}
+.fig--full .imgwrap{aspect-ratio:21/9}
+
+.grid--orchard .fig--wide{grid-column:1/9;grid-row:1/3}
+.grid--orchard .orchard__text{grid-column:9/13;grid-row:1;padding-top:60px}
+.grid--orchard .fig--right{grid-column:9/12;grid-row:2;align-self:end;margin-top:60px}
+.grid--orchard .ch-head{margin-bottom:34px}
+
+.grid--bath .ch-head{grid-column:1/8}
+.grid--bath .fig--full{grid-column:1/13}
+.grid--bath .bath__text{grid-column:6/12;font-size:1.15rem}
+.grid--bath .ch-head{margin-bottom:0}
+
+.grid--sauna{align-items:center}
+.grid--sauna .sauna__text{grid-column:1/6}
+.grid--sauna .fig--tall{grid-column:7/13}
+.sauna__text .ch-head{margin-bottom:34px}
+
+.grid--fire{align-items:center}
+.grid--fire .fig--wide{grid-column:1/8}
+.grid--fire .fire__text{grid-column:9/13}
+.fire__text .ch-head{margin-bottom:34px}
+
+/* GALLERY */
+.gallery{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(20px,3vw,40px);align-items:start}
+.g figcaption{margin-top:12px;font-size:.78rem;font-style:italic;opacity:.75}
+.g figcaption span{font-style:normal;color:var(--gold);letter-spacing:.2em;margin-right:8px}
+.g .imgwrap{aspect-ratio:3/4}
+.g1{grid-column:1/6}.g2{grid-column:7/10;margin-top:90px}.g3{grid-column:10/13;margin-top:30px}
+.g4{grid-column:1/4;margin-top:20px}.g5{grid-column:5/9;margin-top:-40px}.g6{grid-column:9/13;margin-top:60px}
+.g2 .imgwrap,.g3 .imgwrap,.g4 .imgwrap{aspect-ratio:4/5}.g5 .imgwrap{aspect-ratio:1/1}
+
+/* STAY */
+.chapter--stay{background:var(--paper-2)}
+.stay{display:grid;grid-template-columns:5fr 7fr;gap:clamp(30px,6vw,90px);align-items:start}
+.stay__info .label{margin:34px 0 10px}.stay__info .label:first-child{margin-top:0}
+.amen{list-style:none}
+.amen li{padding:9px 0;border-bottom:1px solid rgba(168,143,92,.4);font-size:.98rem}
+.amen li::before{content:"·";color:var(--gold);margin-right:12px}
+.book{background:var(--paper);border:1px solid var(--gold);padding:clamp(26px,4vw,52px);position:relative;box-shadow:0 30px 60px -40px rgba(20,25,18,.5)}
+.book::before{content:"";position:absolute;inset:7px;border:1px solid rgba(168,143,92,.35);pointer-events:none}
+.book__row{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:24px}
+.field{display:flex;flex-direction:column;gap:8px}
+.field input,.field select{font:300 1rem var(--font);color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--gold-soft);padding:10px 0;min-height:48px;border-radius:0;outline:none;transition:border-color .5s;appearance:none;-webkit-appearance:none;width:100%}
+.field select{background-image:linear-gradient(45deg,transparent 50%,var(--gold-soft) 50%),linear-gradient(-45deg,transparent 50%,var(--gold-soft) 50%);background-size:6px 6px;background-position:calc(100% - 10px) 50%,calc(100% - 4px) 50%;background-repeat:no-repeat;padding-right:24px}
+.field input:focus,.field select:focus{border-color:var(--forest);border-bottom-width:2px}
+.stepper{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--gold-soft);min-height:48px}
+.stepper button{width:48px;height:48px;border:0;background:none;font:200 1.6rem var(--font);color:var(--forest);cursor:pointer;transition:color .3s}
+.stepper button:hover{color:var(--gold)}
+.stepper output{font-size:1.1rem}
+.avail{display:flex;align-items:center;gap:12px;padding:14px 16px;margin-bottom:26px;border:1px solid rgba(168,143,92,.45);font-size:.92rem;background:rgba(168,143,92,.08)}
+.avail__dot{width:9px;height:9px;border-radius:50%;background:var(--gold-soft);flex:none}
+.avail.ok .avail__dot{background:#4f7a4f}.avail.no .avail__dot{background:#8a3b2e}
+.book__note{margin-top:16px;font-size:.8rem;text-align:center;opacity:.7;font-style:italic}
+.book__done{margin-top:20px;padding:18px;border:1px solid var(--gold);text-align:center;background:rgba(22,34,27,.06)}
+.field.err input{border-bottom-color:#8a3b2e}
+
+/* FOOTER */
+.footer{background:var(--forest);color:#d9d1bc;padding:90px 0 40px}
+.footer__grid{display:grid;grid-template-columns:1.2fr 1fr 1.2fr;gap:50px;padding-bottom:60px;border-bottom:1px solid rgba(168,143,92,.3)}
+.footer__brand{font-size:1.5rem;letter-spacing:.4em;font-weight:300;color:#efe8d6}
+.footer__tag{margin-top:10px;font-style:italic;opacity:.75}
+.footer__nav{display:flex;flex-direction:column;gap:6px}
+.footer__nav a,.footer__contact a{font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;opacity:.85;transition:color .4s}
+.footer__nav a:hover,.footer__contact a:hover{color:var(--gold)}
+.footer__contact{list-style:none;display:flex;flex-direction:column;gap:14px}
+.footer__contact li{display:flex;flex-direction:column;gap:2px}
+.footer__contact a{text-transform:none;letter-spacing:.06em;font-size:1rem}
+.footer__legal{text-align:center;margin-top:34px;font-size:.72rem;letter-spacing:.2em;opacity:.55;text-transform:uppercase}
+
+/* REVEALS */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity 1.6s var(--ease),transform 1.6s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal-img .imgwrap{clip-path:inset(0 0 100% 0);transition:clip-path 2.2s var(--ease)}
+.reveal-img figcaption{opacity:0;transition:opacity 1.6s 1s}
+.reveal-img.in .imgwrap{clip-path:inset(0)}
+.reveal-img.in figcaption{opacity:.75}
+
+/* missing photographs */
+.missing{background:#26352b!important}
+.imgwrap.missing::after{content:"Photograph to be placed";position:absolute;inset:0;display:grid;place-items:center;font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);opacity:.6}
+
+/* RESPONSIVE */
+@media (max-width:960px){
+  body{font-size:17px}
+  .nav__links{display:none}.nav__toggle{display:block}
+  .nav.menu-open{background:transparent}
+  .hero{height:280vh}
+  .layer--trees-near .tree{max-width:70%}
+  .grid,.gallery{display:flex;flex-direction:column;gap:32px}
+  .grid--house .fig--small,.grid--orchard .fig--right{width:70%}
+  .grid--orchard .fig--right{align-self:flex-end;margin-top:0}
+  .grid--orchard .orchard__text{padding-top:0}
+  .grid--bath .fig--full .imgwrap{aspect-ratio:4/5}
+  .grid--bath .bath__text{font-size:1.05rem}
+  .grid--house .fig--small{margin-top:0}
+  .g{margin-top:0!important}.g:nth-child(even){width:78%;align-self:flex-end}.g:nth-child(odd){width:88%}
+  .stay{grid-template-columns:1fr}
+  .footer__grid{grid-template-columns:1fr;gap:36px}
+}
+@media (max-width:560px){
+  .wrap{width:calc(100% - 32px)}
+  .book__row{grid-template-columns:1fr;gap:20px}
+  .hero__cta .btn{width:100%}
+  .hero__content{bottom:14vh}
+  .btn{min-height:56px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+  .reveal,.reveal-img .imgwrap,.hero__kicker,.hero__title,.hero__sub,.hero__cta{opacity:1;transform:none;clip-path:none}
+  .reveal-img figcaption{opacity:.75}
+}
+
+</style>
+</head>
+<body>
+
+<div class="curtain" id="curtain" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <a class="nav__brand" href="#top">Fjern skog</a>
+  <nav class="nav__links" aria-label="Main">
+    <a href="#house">The House</a>
+    <a href="#orchard">Orchard</a>
+    <a href="#sauna">Sauna</a>
+    <a href="#bath">Bath</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#stay" class="nav__stay">Stay</a>
+  </nav>
+  <button class="nav__toggle" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+</header>
+
+<div class="menu" id="menu" aria-hidden="true">
+  <nav aria-label="Mobile">
+    <a href="#top"><i>·</i>Fjern skog</a>
+    <a href="#house"><i>I</i>The House</a>
+    <a href="#orchard"><i>II</i>Orchard</a>
+    <a href="#sauna"><i>IV</i>Sauna</a>
+    <a href="#bath"><i>III</i>Bath</a>
+    <a href="#gallery"><i>VI</i>Gallery</a>
+    <a href="#stay"><i>VII</i>Stay</a>
+  </nav>
+  <p class="menu__foot">A secluded residence in the woods.</p>
+</div>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero__sticky">
+    <div class="layer layer--sky" data-speed="0.05"><img src="img/hero.jpg" alt="An old house among dark trees at dusk" fetchpriority="high"></div>
+    <div class="layer layer--house" data-speed="0.10">
+      <svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+        <g fill="#0d130f">
+          <path d="M120 500V300l70-60 30 20V190l60-40 60 40v70l40-30 60 50v280z" opacity=".0"/>
+        </g>
+      </svg>
+      <div class="glow glow--a"></div><div class="glow glow--b"></div><div class="glow glow--c"></div>
+    </div>
+    <div class="layer layer--mist1" data-speed="0.22"></div>
+    <div class="layer layer--trees-far" data-speed="0.30">
+      <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+        <g fill="#0c1410" opacity=".82">
+          <path d="M0 900V420l30-90 20 120 30-200 25 210 35-140 20 160 40-220 25 240 30-120 20 150 40-260 30 280 20-100 30 180 30-240 30 260 40-180 25 200 30-300 30 320 30-140 25 190 40-230 30 250 20-110 40 170 30-280 25 260 30-160 30 190 30-220 30 240 20-120 30 170 40-250 30 260 30-130 30 170 30-210 25 230 40-190 30 170 30-260 30 280 20-140 30 180 30-240 30 220 40-160 30 200 30-300 30 300 20-120 30 170 30-220 30 250 30-160 40 200 30-270 30 250 25-130 30 190 30-230 20 220 20 100V900z"/>
+        </g>
+      </svg>
+    </div>
+    <div class="layer layer--mist2" data-speed="0.40"></div>
+    <div class="layer layer--trees-near" data-speed="0.65">
+      <svg class="tree tree--l" viewBox="0 0 600 1000" preserveAspectRatio="xMinYMax meet" aria-hidden="true">
+        <g fill="#070b08">
+          <path d="M0 1000V0h120c-10 200 10 420 60 640 20 120 30 240 20 360z"/>
+          <path d="M100 300c90-40 200-70 330-60 60 5 120 30 170 70-70-10-120-10-190 10-110 30-200 70-310 130z"/>
+          <path d="M120 520c110-20 210-10 300 30 40 20 90 50 120 90-70-30-130-40-200-30-90 15-160 40-240 70z"/>
+          <path d="M90 130c80-30 170-40 250-20 60 15 110 45 150 80-60-20-110-25-170-15-80 15-150 30-230 55z"/>
+        </g>
+      </svg>
+      <svg class="tree tree--r" viewBox="0 0 600 1000" preserveAspectRatio="xMaxYMax meet" aria-hidden="true">
+        <g fill="#070b08" transform="translate(600 0) scale(-1 1)">
+          <path d="M0 1000V0h140c-20 180 0 420 50 620 25 120 40 250 30 380z"/>
+          <path d="M110 240c100-50 210-70 340-50 60 10 110 40 150 80-70-15-120-10-190 15-110 35-200 80-300 150z"/>
+          <path d="M130 480c110-30 220-20 300 20 50 25 90 55 120 100-70-35-130-45-200-35-90 15-160 45-220 80z"/>
+          <path d="M80 60c80-30 170-40 260-20 60 15 110 50 150 90-60-25-110-30-170-20-80 15-150 35-240 60z"/>
+        </g>
+      </svg>
+      <svg class="branch" viewBox="0 0 1600 400" preserveAspectRatio="none" aria-hidden="true">
+        <g fill="none" stroke="#070b08" stroke-linecap="round">
+          <path d="M0 40C200 60 300 150 520 130s380-90 560-60 340 100 520 60" stroke-width="10"/>
+          <path d="M380 120c30 60 20 120 60 170M780 95c-20 70 10 130-20 200M1180 90c30 50 20 110 70 160M620 130c-40 40-60 90-100 120" stroke-width="5"/>
+        </g>
+        <g fill="#070b08" opacity=".9">
+          <ellipse cx="440" cy="290" rx="16" ry="34" transform="rotate(20 440 290)"/><ellipse cx="760" cy="300" rx="14" ry="30" transform="rotate(-15 760 300)"/>
+          <ellipse cx="1250" cy="260" rx="15" ry="32" transform="rotate(25 1250 260)"/><ellipse cx="520" cy="250" rx="13" ry="28" transform="rotate(-30 520 250)"/>
+          <ellipse cx="960" cy="150" rx="14" ry="30" transform="rotate(10 960 150)"/><ellipse cx="220" cy="130" rx="15" ry="32" transform="rotate(-20 220 130)"/>
+        </g>
+      </svg>
+    </div>
+    <div class="layer layer--mist3" data-speed="0.9"></div>
+    <div class="layer layer--veil" id="veil"></div>
+
+    <div class="hero__content" id="heroContent">
+      <p class="label hero__kicker">Est. in the woods · Anno MDCCCXLVII</p>
+      <h1 class="hero__title">Fjern skog</h1>
+      <p class="hero__sub">A hidden retreat in the heart of the forest.</p>
+      <div class="hero__cta">
+        <a href="#house" class="btn btn--solid">Discover the house</a>
+        <a href="#stay" class="btn btn--ghost">Stay for a while</a>
+      </div>
+    </div>
+    <a href="#house" class="scrollcue" aria-label="Scroll"><span>Scroll</span><i></i></a>
+  </div>
+</section>
+
+<!-- I THE HOUSE -->
+<section class="chapter" id="house">
+  <div class="wrap grid grid--house">
+    <header class="ch-head reveal">
+      <span class="ch-num">I</span>
+      <span class="label">Chapter one</span>
+      <h2>The House</h2>
+      <span class="rule"></span>
+    </header>
+    <div class="house__text reveal">
+      <p class="dropcap">Fjern Skog is an old residence hidden deep within the forest, reached by a single track that the woods have half forgotten. It was built for those who wished to be elsewhere — and it has kept that promise for well over a century.</p>
+      <p>Inside, the rooms are low-lit and unhurried. Candles stand on worn oak, a fireplace holds the evening, and painted faces of long-departed owners regard the guest from heavy frames. It is designed for those seeking silence, nature and distance from everyday life.</p>
+      <p class="aside">No signal is promised. Only the sound of wind in the crowns, and a kettle.</p>
+    </div>
+    <figure class="fig fig--tall reveal-img">
+      <div class="imgwrap"><img data-parallax="0.08" src="img/house.jpg" alt="Antique interior with candles and old paintings" loading="lazy"></div>
+      <figcaption><span>Pl. I</span> The long room, lit at dusk.</figcaption>
+    </figure>
+    <figure class="fig fig--small reveal-img">
+      <div class="imgwrap"><img data-parallax="0.05" src="img/candles.jpg" alt="Candles on an old table" loading="lazy"></div>
+      <figcaption><span>Pl. II</span> Candles, beeswax and oak.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<div class="divider"><span>❦</span></div>
+
+<!-- II THE ORCHARD -->
+<section class="chapter chapter--dark" id="orchard">
+  <div class="wrap grid grid--orchard">
+    <figure class="fig fig--wide reveal-img">
+      <div class="imgwrap"><img data-parallax="0.08" src="img/orchard.jpg" alt="An overgrown orchard of old fruit trees" loading="lazy"></div>
+      <figcaption><span>Pl. III</span> The orchard, untended since before living memory.</figcaption>
+    </figure>
+    <div class="orchard__text reveal">
+      <header class="ch-head">
+        <span class="ch-num">II</span>
+        <span class="label">Chapter two</span>
+        <h2>The Orchard</h2>
+        <span class="rule"></span>
+      </header>
+      <p class="dropcap">Behind the house the garden gave up long ago — and is better for it. Old apple, pear and plum trees lean into one another, their trunks furred with moss, the grass grown to the knee.</p>
+      <p>In autumn the fruit falls where it will. Walk slowly. Take what you like, and leave the rest to the deer.</p>
+    </div>
+    <figure class="fig fig--small fig--right reveal-img">
+      <div class="imgwrap"><img data-parallax="0.05" src="img/apples.jpg" alt="Fallen fruit in the grass" loading="lazy"></div>
+      <figcaption><span>Pl. IV</span> Windfalls, September.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- III THE BATH -->
+<section class="chapter" id="bath">
+  <div class="wrap grid grid--bath">
+    <header class="ch-head reveal">
+      <span class="ch-num">III</span>
+      <span class="label">Chapter three</span>
+      <h2>The Bath</h2>
+      <span class="rule"></span>
+    </header>
+    <figure class="fig fig--full reveal-img">
+      <div class="imgwrap"><img data-parallax="0.07" src="img/bath.jpg" alt="A freestanding bathtub beside a large window overlooking the forest" loading="lazy"></div>
+      <figcaption><span>Pl. V</span> A freestanding tub before the tall window.</figcaption>
+    </figure>
+    <div class="bath__text reveal">
+      <p>A vintage freestanding bath sits beside a great window, and beyond the glass there is only forest. Fill it slowly. Let the light go blue, then grey, then out.</p>
+    </div>
+  </div>
+</section>
+
+<!-- IV THE SAUNA -->
+<section class="chapter chapter--dark" id="sauna">
+  <div class="wrap grid grid--sauna">
+    <div class="sauna__text reveal">
+      <header class="ch-head">
+        <span class="ch-num">IV</span>
+        <span class="label">Chapter four</span>
+        <h2>The Sauna</h2>
+        <span class="rule"></span>
+      </header>
+      <p class="dropcap">Down a short path, among the pines, stands a small wooden sauna — dark with smoke, intimate, made for two or three at most. Heat, birch and the smell of resin.</p>
+      <p>Afterwards, stand outside in the cold until the steam lifts off your shoulders and the forest returns.</p>
+    </div>
+    <figure class="fig fig--tall reveal-img">
+      <div class="imgwrap"><img data-parallax="0.08" src="img/sauna.jpg" alt="A small wooden sauna surrounded by nature" loading="lazy"></div>
+      <figcaption><span>Pl. VI</span> The sauna, among the pines.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- V THE FIREPLACE -->
+<section class="chapter" id="fireplace">
+  <div class="wrap grid grid--fire">
+    <figure class="fig fig--wide reveal-img">
+      <div class="imgwrap"><img data-parallax="0.08" src="img/fireplace.jpg" alt="Fireplace, candles and antique furniture in the evening" loading="lazy"></div>
+      <figcaption><span>Pl. VII</span> The hearth, after supper.</figcaption>
+    </figure>
+    <div class="fire__text reveal">
+      <header class="ch-head">
+        <span class="ch-num">V</span>
+        <span class="label">Chapter five</span>
+        <h2>The Fireplace</h2>
+        <span class="rule"></span>
+      </header>
+      <p class="dropcap">Evenings gather around the hearth: a fire that must be tended, candles in pewter, a worn armchair with a book left open on its arm.</p>
+      <p>There is nowhere else to be.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VI THE DETAILS / GALLERY -->
+<section class="chapter chapter--dark" id="gallery">
+  <div class="wrap">
+    <header class="ch-head ch-head--center reveal">
+      <span class="ch-num">VI</span>
+      <span class="label">Chapter six</span>
+      <h2>The Details</h2>
+      <span class="rule"></span>
+      <p class="lead">Books, ceramics, paintings, candles, wood — small things that have outlived their owners.</p>
+    </header>
+    <div class="gallery">
+      <figure class="g g1 reveal-img"><div class="imgwrap"><img data-parallax="0.04" src="img/d-books.jpg" alt="Old books" loading="lazy"></div><figcaption><span>i.</span> Books</figcaption></figure>
+      <figure class="g g2 reveal-img"><div class="imgwrap"><img data-parallax="0.04" src="img/d-ceramics.jpg" alt="Ceramics" loading="lazy"></div><figcaption><span>ii.</span> Ceramics</figcaption></figure>
+      <figure class="g g3 reveal-img"><div class="imgwrap"><img data-parallax="0.04" src="img/d-painting.jpg" alt="An old painting" loading="lazy"></div><figcaption><span>iii.</span> Paintings</figcaption></figure>
+      <figure class="g g4 reveal-img"><div class="imgwrap"><img data-parallax="0.04" src="img/d-candle.jpg" alt="A candle" loading="lazy"></div><figcaption><span>iv.</span> Candles</figcaption></figure>
+      <figure class="g g5 reveal-img"><div class="imgwrap"><img data-parallax="0.04" src="img/d-wood.jpg" alt="Weathered wood" loading="lazy"></div><figcaption><span>v.</span> Wood</figcaption></figure>
+      <figure class="g g6 reveal-img"><div class="imgwrap"><img data-parallax="0.04" src="img/d-object.jpg" alt="A small vintage object" loading="lazy"></div><figcaption><span>vi.</span> Small objects</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- VII STAY -->
+<section class="chapter chapter--stay" id="stay">
+  <div class="wrap">
+    <header class="ch-head ch-head--center reveal">
+      <span class="ch-num">VII</span>
+      <span class="label">Stay at Fjern skog</span>
+      <h2>Your stay begins here</h2>
+      <span class="rule"></span>
+    </header>
+
+    <div class="stay">
+      <div class="stay__info reveal">
+        <h3 class="label">The residence</h3>
+        <p>Four bedrooms, a library, a kitchen with a wood stove, and the whole of the forest. The house is let to one party at a time.</p>
+        <h3 class="label">Amenities</h3>
+        <ul class="amen">
+          <li>Open fireplaces &amp; wood stove</li>
+          <li>Freestanding bath</li>
+          <li>Private wood-fired sauna</li>
+          <li>Orchard &amp; walking trails</li>
+          <li>Library of some 900 books</li>
+          <li>Linen, wool blankets, firewood</li>
+        </ul>
+        <h3 class="label">Location</h3>
+        <p>Deep in an ancient woodland, some ninety minutes from the nearest town. Directions are sent with your confirmation.</p>
+      </div>
+
+      <form class="book reveal" id="bookForm" novalidate>
+        <div class="book__row">
+          <label class="field"><span class="label">Arrival date</span><input type="date" id="arrive" required></label>
+          <label class="field"><span class="label">Departure date</span><input type="date" id="depart" required></label>
+        </div>
+        <div class="book__row">
+          <div class="field">
+            <span class="label">Guests</span>
+            <div class="stepper" role="group" aria-label="Guests">
+              <button type="button" id="gMinus" aria-label="Fewer guests">−</button>
+              <output id="gCount">2</output>
+              <button type="button" id="gPlus" aria-label="More guests">+</button>
+            </div>
+          </div>
+          <label class="field"><span class="label">Accommodation</span>
+            <select id="acc">
+              <option value="house">The whole house</option>
+              <option value="library">The Library Wing (2 guests)</option>
+              <option value="orchard">The Orchard Room (2 guests)</option>
+            </select>
+          </label>
+        </div>
+        <div class="avail" id="avail" role="status" aria-live="polite">
+          <span class="avail__dot"></span><span id="availText">Choose your dates to check availability.</span>
+        </div>
+        <div class="book__row">
+          <label class="field"><span class="label">Name</span><input type="text" id="name" autocomplete="name" placeholder="Your name"></label>
+          <label class="field"><span class="label">Email</span><input type="email" id="email" autocomplete="email" placeholder="you@example.com"></label>
+        </div>
+        <button class="btn btn--solid btn--block" type="submit" id="bookBtn">Stay for a while</button>
+        <p class="book__note">A booking request — no payment is taken. We reply by letter within two days.</p>
+        <p class="book__done" id="bookDone" hidden></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <div>
+      <p class="footer__brand">FJERN SKOG</p>
+      <p class="footer__tag">A secluded residence in the woods.</p>
+    </div>
+    <nav aria-label="Footer" class="footer__nav">
+      <a href="#top">Fjern skog</a><a href="#house">The House</a><a href="#orchard">Orchard</a><a href="#sauna">Sauna</a><a href="#bath">Bath</a><a href="#gallery">Gallery</a><a href="#stay">Stay</a>
+    </nav>
+    <ul class="footer__contact">
+      <li><span class="label">Instagram</span><a href="https://instagram.com/fjernskog" rel="noopener">@fjernskog</a></li>
+      <li><span class="label">Email</span><a href="mailto:hello@fjernskog.example">hello@fjernskog.example</a></li>
+      <li><span class="label">Location</span>Deep in the woods, Norway</li>
+    </ul>
+  </div>
+  <p class="footer__legal">❦ &nbsp; © Fjern Skog. Photographs from Unsplash.</p>
+</footer>
+
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $ = function(s,c){return (c||document).querySelector(s)};
+  var $$ = function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+
+  // page transition in
+  window.addEventListener('load', function(){ setTimeout(function(){ $('#curtain').classList.add('gone'); }, 150); });
+
+  // nav + mobile menu
+  var nav = $('#nav'), btn = $('#menuBtn'), menu = $('#menu');
+  function setMenu(open){
+    btn.classList.toggle('open', open);
+    menu.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open);
+    menu.setAttribute('aria-hidden', !open);
+    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  btn.addEventListener('click', function(){ setMenu(!menu.classList.contains('open')); });
+  $$('#menu a').forEach(function(a){ a.addEventListener('click', function(){ setMenu(false); }); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') setMenu(false); });
+
+  // photographs missing: keep the composition, show a quiet plate instead of a broken icon
+  $$('img').forEach(function(im){
+    function miss(){ im.style.visibility = 'hidden'; im.parentNode.classList.add('missing'); }
+    if (im.complete && im.naturalWidth === 0) miss(); else im.addEventListener('error', miss);
+  });
+
+  // hero + parallax
+  var hero = $('#hero'), layers = $$('.layer[data-speed]'), veil = $('#veil'),
+      content = $('#heroContent'), mist3 = $('.layer--mist3'), cue = $('.scrollcue'),
+      glows = $$('.glow'), branch = $('.branch'), imgs = $$('img[data-parallax]');
+  var ticking = false;
+  function clamp(v){ return Math.max(0, Math.min(1, v)); }
+
+  function update(){
+    ticking = false;
+    var y = window.scrollY, vh = window.innerHeight;
+    nav.classList.toggle('solid', y > vh * 0.12 || menu.classList.contains('open') === false && y > vh * 0.12);
+
+    var span = hero.offsetHeight - vh;
+    var p = clamp(y / span); // 0..1 through hero
+    if (y <= hero.offsetHeight) {
+      layers.forEach(function(l){
+        var s = parseFloat(l.dataset.speed);
+        // background barely moves, foreground moves faster
+        l.style.transform = 'translate3d(0,' + (-y * s * 0.35).toFixed(1) + 'px,0)' +
+          (l.classList.contains('layer--trees-near') ? ' scale(' + (1 + p * 0.22).toFixed(3) + ')' : '') +
+          (l.classList.contains('layer--trees-far') ? ' scale(' + (1 + p * 0.1).toFixed(3) + ')' : '');
+      });
+      // foreground closes in: branches descend and mist thickens over the house
+      if (branch) branch.style.transform = 'translateY(' + (p * 55).toFixed(1) + '%) scaleY(' + (1 + p * 0.9).toFixed(2) + ')';
+      mist3.style.opacity = (p * 0.95).toFixed(2);
+      // windows stay lit, fade last
+      var g = 0.85 - clamp((p - 0.7) / 0.3) * 0.7;
+      glows.forEach(function(el){ el.style.filter = 'blur(' + (5 + p * 6) + 'px)'; });
+      $('.layer--house').style.opacity = g.toFixed(2);
+      veil.style.opacity = (clamp((p - 0.62) / 0.38) * 0.94).toFixed(2);
+      content.style.opacity = (1 - clamp(p / 0.28)).toFixed(2);
+      content.style.transform = 'translateY(' + (-p * 60).toFixed(1) + 'px)';
+      cue.style.opacity = (1 - clamp(p / 0.1)).toFixed(2);
+    }
+
+    // gentle image parallax
+    imgs.forEach(function(im){
+      var r = im.parentNode.getBoundingClientRect();
+      if (r.bottom < -100 || r.top > vh + 100) return;
+      var k = parseFloat(im.dataset.parallax);
+      var off = ((r.top + r.height / 2) - vh / 2) * -k;
+      im.style.transform = 'translate3d(0,' + off.toFixed(1) + 'px,0)';
+    });
+  }
+  function req(){ if(!ticking){ ticking = true; requestAnimationFrame(update); } }
+  if (!reduce) { addEventListener('scroll', req, {passive:true}); addEventListener('resize', req); }
+  addEventListener('scroll', function(){ nav.classList.toggle('solid', window.scrollY > window.innerHeight * 0.12); }, {passive:true});
+  update();
+
+  // reveals
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold: .18, rootMargin: '0px 0px -6% 0px'});
+  $$('.reveal, .reveal-img').forEach(function(el){ io.observe(el); });
+
+  // smooth in-page transitions (offset for fixed nav)
+  $$('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      if (id.length < 2) return;
+      var t = $(id); if(!t) return;
+      e.preventDefault();
+      t.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block: 'start'});
+      history.replaceState(null, '', id);
+    });
+  });
+
+  // booking
+  var arrive = $('#arrive'), depart = $('#depart'), gc = $('#gCount'), acc = $('#acc'),
+      avail = $('#avail'), availText = $('#availText'), form = $('#bookForm'), done = $('#bookDone');
+  var guests = 2;
+  function iso(d){ return d.toISOString().slice(0,10); }
+  var today = new Date(); arrive.min = iso(today);
+  // demo: a fixed set of weeks already taken (replace with real backend)
+  var booked = [['2026-10-09','2026-10-14'],['2026-11-20','2026-11-24'],['2026-12-22','2027-01-03']];
+  function max(){ return acc.value === 'house' ? 8 : 2; }
+  function setGuests(n){ guests = Math.max(1, Math.min(max(), n)); gc.textContent = guests; check(); }
+  $('#gMinus').onclick = function(){ setGuests(guests - 1); };
+  $('#gPlus').onclick = function(){ setGuests(guests + 1); };
+  acc.onchange = function(){ setGuests(guests); };
+  arrive.onchange = function(){
+    var d = new Date(arrive.value); d.setDate(d.getDate() + 1); depart.min = iso(d);
+    if (depart.value && depart.value <= arrive.value) depart.value = '';
+    check();
+  };
+  depart.onchange = check;
+  function state(cls, msg){ avail.className = 'avail ' + cls; availText.textContent = msg; }
+  function check(){
+    if (!arrive.value || !depart.value) { state('', 'Choose your dates to check availability.'); return false; }
+    var a = arrive.value, d = depart.value, nights = Math.round((new Date(d) - new Date(a)) / 864e5);
+    var clash = booked.some(function(b){ return a < b[1] && d > b[0]; });
+    if (clash) { state('no', 'Sadly the house is occupied on these dates. Try another week.'); return false; }
+    state('ok', 'Available — ' + nights + ' night' + (nights > 1 ? 's' : '') + ', ' + guests + ' guest' + (guests > 1 ? 's' : '') + '.');
+    return true;
+  }
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    $$('.field', form).forEach(function(f){ f.classList.remove('err'); });
+    var bad = [arrive, depart, $('#name'), $('#email')].filter(function(i){ return !i.value.trim() || (i.type === 'email' && !/^\S+@\S+\.\S+$/.test(i.value)); });
+    bad.forEach(function(i){ i.closest('.field').classList.add('err'); });
+    if (bad.length) { bad[0].focus(); return; }
+    if (!check()) return;
+    done.hidden = false;
+    done.textContent = 'Thank you, ' + $('#name').value.trim().split(' ')[0] + '. Your request has been received — we will write to you within two days.';
+    $('#bookBtn').disabled = true;
+    done.scrollIntoView({behavior:'smooth', block:'center'});
+  });
+})();
+
+</script>
+</body>
+</html>
