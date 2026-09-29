@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fjern Skog — A hidden retreat in the heart of the forest</title>
+<meta name="description" content="Fjern Skog is a secluded historic residence hidden deep within an ancient woodland. Silence, nature and distance from everyday life.">
+<meta name="theme-color" content="#16221b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="curtain" id="curtain" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <a class="nav__brand" href="#top">Fjern skog</a>
+  <nav class="nav__links" aria-label="Main">
+    <a href="#house">The House</a>
+    <a href="#orchard">Orchard</a>
+    <a href="#sauna">Sauna</a>
+    <a href="#bath">Bath</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#stay" class="nav__stay">Stay</a>
+  </nav>
+  <button class="nav__toggle" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+</header>
+
+<div class="menu" id="menu" aria-hidden="true">
+  <nav aria-label="Mobile">
+    <a href="#top"><i>·</i>Fjern skog</a>
+    <a href="#house"><i>I</i>The House</a>
+    <a href="#orchard"><i>II</i>Orchard</a>
+    <a href="#sauna"><i>IV</i>Sauna</a>
+    <a href="#bath"><i>III</i>Bath</a>
+    <a href="#gallery"><i>VI</i>Gallery</a>
+    <a href="#stay"><i>VII</i>Stay</a>
+  </nav>
+  <p class="menu__foot">A secluded residence in the woods.</p>
+</div>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero__sticky">
+    <div class="layer layer--sky" data-speed="0.05"><img src="img/hero.jpg" alt="An old house among dark trees at dusk" fetchpriority="high"></div>
+    <div class="layer layer--house" data-speed="0.10">
+      <svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+        <g fill="#0d130f">
+          <path d="M120 500V300l70-60 30 20V190l60-40 60 40v70l40-30 60 50v280z" opacity=".0"/>
+        </g>
+      </svg>
+      <div class="glow glow--a"></div><div class="glow glow--b"></div><div class="glow glow--c"></div>
+    </div>
+    <div class="layer layer--mist1" data-speed="0.22"></div>
+    <div class="layer layer--trees-far" data-speed="0.30">
+      <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+        <g fill="#0c1410" opacity=".82">
+          <path d="M0 900V420l30-90 20 120 30-200 25 210 35-140 20 160 40-220 25 240 30-120 20 150 40-260 30 280 20-100 30 180 30-240 30 260 40-180 25 200 30-300 30 320 30-140 25 190 40-230 30 250 20-110 40 170 30-280 25 260 30-160 30 190 30-220 30 240 20-120 30 170 40-250 30 260 30-130 30 170 30-210 25 230 40-190 30 170 30-260 30 280 20-140 30 180 30-240 30 220 40-160 30 200 30-300 30 300 20-120 30 170 30-220 30 250 30-160 40 200 30-270 30 250 25-130 30 190 30-230 20 220 20 100V900z"/>
+        </g>
+      </svg>
+    </div>
+    <div class="layer layer--mist2" data-speed="0.40"></div>
+    <div class="layer layer--trees-near" data-speed="0.65">
+      <svg class="tree tree--l" viewBox="0 0 600 1000" preserveAspectRatio="xMinYMax meet" aria-hidden="true">
+        <g fill="#070b08">
+          <path d="M0 1000V0h120c-10 200 10 420 60 640 20 120 30 240 20 360z"/>
+          <path d="M100 300c90-40 200-70 330-60 60 5 120 30 170 70-70-10-120-10-190 10-110 30-200 70-310 130z"/>
+          <path d="M120 520c110-20 210-10 300 30 40 20 90 50 120 90-70-30-130-40-200-30-90 15-160 40-240 70z"/>
+          <path d="M90 130c80-30 170-40 250-20 60 15 110 45 150 80-60-20-110-25-170-15-80 15-150 30-230 55z"/>
+        </g>
+      </svg>
+      <svg class="tree tree--r" viewBox="0 0 600 1000" preserveAspectRatio="xMaxYMax meet" aria-hidden="true">
+        <g fill="#070b08" transform="translate(600 0) scale(-1 1)">
+          <path d="M0 1000V0h140c-20 180 0 420 50 620 25 120 40 250 30 380z"/>
+          <path d="M110 240c100-50 210-70 340-50 60 10 110 40 150 80-70-15-120-10-190 15-110 35-200 80-300 150z"/>
+          <path d="M130 480c110-30 220-20 300 20 50 25 90 55 120 100-70-35-130-45-200-35-90 15-160 45-220 80z"/>
+          <path d="M80 60c80-30 170-40 260-20 60 15 110 50 150 90-60-25-110-30-170-20-80 15-150 35-240 60z"/>
+        </g>
+      </svg>
+      <svg class="branch" viewBox="0 0 1600 400" preserveAspectRatio="none" aria-hidden="true">
+        <g fill="none" stroke="#070b08" stroke-linecap="round">
+          <path d="M0 40C200 60 300 150 520 130s380-90 560-60 340 100 520 60" stroke-width="10"/>
+          <path d="M380 120c30 60 20 120 60 170M780 95c-20 70 10 130-20 200M1180 90c30 50 20 110 70 160M620 130c-40 40-60 90-100 120" stroke-width="5"/>
+        </g>
+        <g fill="#070b08" opacity=".9">
+          <ellipse cx="440" cy="290" rx="16" ry="34" transform="rotate(20 440 290)"/><ellipse cx="760" cy="300" rx="14" ry="30" transform="rotate(-15 760 300)"/>
+          <ellipse cx="1250" cy="260" rx="15" ry="32" transform="rotate(25 1250 260)"/><ellipse cx="520" cy="250" rx="13" ry="28" transform="rotate(-30 520 250)"/>
+          <ellipse cx="960" cy="150" rx="14" ry="30" transform="rotate(10 960 150)"/><ellipse cx="220" cy="130" rx="15" ry="32" transform="rotate(-20 220 130)"/>
+        </g>
+      </svg>
+    </div>
+    <div class="layer layer--mist3" data-speed="0.9"></div>
+    <div class="layer layer--veil" id="veil"></div>
+
+    <div class="hero__content" id="heroContent">
+      <p class="label hero__kicker">Est. in the woods · Anno MDCCCXLVII</p>
+      <h1 class="hero__title">Fjern skog</h1>
+      <p class="hero__sub">A hidden retreat in the heart of the forest.</p>
+      <div class="hero__cta">
+        <a href="#house" class="btn btn--solid">Discover the house</a>
+        <a href="#stay" class="btn btn--ghost">Stay for a while</a>
+      </div>
+    </div>
+    <a href="#house" class="scrollcue" aria-label="Scroll"><span>Scroll</span><i></i></a>
+  </div>
+</section>
+
+<!-- I THE HOUSE -->
+<section class="chapter" id="house">
+  <div class="wrap grid grid--house">
+    <header class="ch-head reveal">
+      <span class="ch-num">I</span>
+      <span class="label">Chapter one</span>
+      <h2>The House</h2>
+      <span class="rule"></span>
+    </header>
+    <div class="house__text reveal">
+      <p class="dropcap">Fjern Skog is an old residence hidden deep within the forest, reached by a single track that the woods have half forgotten. It was built for those who wished to be elsewhere — and it has kept that promise for well over a century.</p>
+      <p>Inside, the rooms are low-lit and unhurried. Candles stand on worn oak, a fireplace holds the evening, and painted faces of long-departed owners regard the guest from heavy frames. It is designed for those seeking silence, nature and distance from everyday life.</p>
+      <p class="aside">No signal is promised. Only the sound of wind in the crowns, and a kettle.</p>
+    </div>
+    <figure class="fig fig--tall reveal-img">
+      <div class="imgwrap"><img data-parallax="0.08" src="img/house.jpg" alt="Antique interior with candles and old paintings" loading="lazy"></div>
+      <figcaption><span>Pl. I</span> The long room, lit at dusk.</figcaption>
+    </figure>
+    <figure class="fig fig--small reveal-img">
+      <div class="imgwrap"><img data-parallax="0.05" src="img/candles.jpg" alt="Candles on an old table" loading="lazy"></div>
+      <figcaption><span>Pl. II</span> Candles, beeswax and oak.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<div class="divider"><span>❦</span></div>
+
+<!-- II THE ORCHARD -->
+<section class="chapter chapter--dark" id="orchard">
+  <div class="wrap grid grid--orchard">
+    <figure class="fig fig--wide reveal-img">
+      <div class="imgwrap"><img data-parallax="0.08" src="img/orchard.jpg" alt="An overgrown orchard of old fruit trees" loading="lazy"></div>
+      <figcaption><span>Pl. III</span> The orchard, untended since before living memory.</figcaption>
+    </figure>
+    <div class="orchard__text reveal">
+      <header class="ch-head">
+        <span class="ch-num">II</span>
+        <span class="label">Chapter two</span>
+        <h2>The Orchard</h2>
+        <span class="rule"></span>
+      </header>
+      <p class="dropcap">Behind the house the garden gave up long ago — and is better for it. Old apple, pear and plum trees lean into one another, their trunks furred with moss, the grass grown to the knee.</p>
+      <p>In autumn the fruit falls where it will. Walk slowly. Take what you like, and leave the rest to the deer.</p>
+    </div>
+    <figure class="fig fig--small fig--right reveal-img">
+      <div class="imgwrap"><img data-parallax="0.05" src="img/apples.jpg" alt="Fallen fruit in the grass" loading="lazy"></div>
+      <figcaption><span>Pl. IV</span> Windfalls, September.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- III THE BATH -->
+<section class="chapter" id="bath">
+  <div class="wrap grid grid--bath">
+    <header class="ch-head reveal">
+      <span class="ch-num">III</span>
+      <span class="label">Chapter three</span>
+      <h2>The Bath</h2>
+      <span class="rule"></span>
+    </header>
+    <figure class="fig fig--full reveal-img">
+      <div class="imgwrap"><img data-parallax="0.07" src="img/bath.jpg" alt="A freestanding bathtub beside a large window overlooking the forest" loading="lazy"></div>
+      <figcaption><span>Pl. V</span> A freestanding tub before the tall window.</figcaption>
+    </figure>
+    <div class="bath__text reveal">
+      <p>A vintage freestanding bath sits beside a great window, and beyond the glass there is only forest. Fill it slowly. Let the light go blue, then grey, then out.</p>
+    </div>
+  </div>
+</section>
+
+<!-- IV THE SAUNA -->
+<section class="chapter chapter--dark" id="sauna">
+  <div class="wrap grid grid--sauna">
+    <div class="sauna__text reveal">
+      <header class="ch-head">
+        <span class="ch-num">IV</span>
+        <span class="label">Chapter four</span>
+        <h2>The Sauna</h2>
+        <span class="rule"></span>
+      </header>
+      <p class="dropcap">Down a short path, among the pines, stands a small wooden sauna — dark with smoke, intimate, made for two or three at most. Heat, birch and the smell of resin.</p>
+      <p>Afterwards, stand outside in the cold until the steam lifts off your shoulders and the forest returns.</p>
+    </div>
+    <figure class="fig fig--tall reveal-img">
+      <div class="imgwrap"><img data-parallax="0.08" src="img/sauna.jpg" alt="A small wooden sauna surrounded by nature" loading="lazy"></div>
+      <figcaption><span>Pl. VI</span> The sauna, among the pines.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- V THE FIREPLACE -->
+<section class="chapter" id="fireplace">
+  <div class="wrap grid grid--fire">
+    <figure class="fig fig--wide reveal-img">
+      <div class="imgwrap"><img data-parallax="0.08" src="img/fireplace.jpg" alt="Fireplace, candles and antique furniture in the evening" loading="lazy"></div>
+      <figcaption><span>Pl. VII</span> The hearth, after supper.</figcaption>
+    </figure>
+    <div class="fire__text reveal">
+      <header class="ch-head">
+        <span class="ch-num">V</span>
+        <span class="label">Chapter five</span>
+        <h2>The Fireplace</h2>
+        <span class="rule"></span>
+      </header>
+      <p class="dropcap">Evenings gather around the hearth: a fire that must be tended, candles in pewter, a worn armchair with a book left open on its arm.</p>
+      <p>There is nowhere else to be.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VI THE DETAILS / GALLERY -->
+<section class="chapter chapter--dark" id="gallery">
+  <div class="wrap">
+    <header class="ch-head ch-head--center reveal">
+      <span class="ch-num">VI</span>
+      <span class="label">Chapter six</span>
+      <h2>The Details</h2>
+      <span class="rule"></span>
+      <p class="lead">Books, ceramics, paintings, candles, wood — small things that have outlived their owners.</p>
+    </header>
+    <div class="gallery">
+      <figure class="g g1 reveal-img"><div class="imgwrap"><img data-parallax="0.04" src="img/d-books.jpg" alt="Old books" loading="lazy"></div><figcaption><span>i.</span> Books</figcaption></figure>
+      <figure class="g g2 reveal-img"><div class="imgwrap"><img data-parallax="0.04" src="img/d-ceramics.jpg" alt="Ceramics" loading="lazy"></div><figcaption><span>ii.</span> Ceramics</figcaption></figure>
+      <figure class="g g3 reveal-img"><div class="imgwrap"><img data-parallax="0.04" src="img/d-painting.jpg" alt="An old painting" loading="lazy"></div><figcaption><span>iii.</span> Paintings</figcaption></figure>
+      <figure class="g g4 reveal-img"><div class="imgwrap"><img data-parallax="0.04" src="img/d-candle.jpg" alt="A candle" loading="lazy"></div><figcaption><span>iv.</span> Candles</figcaption></figure>
+      <figure class="g g5 reveal-img"><div class="imgwrap"><img data-parallax="0.04" src="img/d-wood.jpg" alt="Weathered wood" loading="lazy"></div><figcaption><span>v.</span> Wood</figcaption></figure>
+      <figure class="g g6 reveal-img"><div class="imgwrap"><img data-parallax="0.04" src="img/d-object.jpg" alt="A small vintage object" loading="lazy"></div><figcaption><span>vi.</span> Small objects</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- VII STAY -->
+<section class="chapter chapter--stay" id="stay">
+  <div class="wrap">
+    <header class="ch-head ch-head--center reveal">
+      <span class="ch-num">VII</span>
+      <span class="label">Stay at Fjern skog</span>
+      <h2>Your stay begins here</h2>
+      <span class="rule"></span>
+    </header>
+
+    <div class="stay">
+      <div class="stay__info reveal">
+        <h3 class="label">The residence</h3>
+        <p>Four bedrooms, a library, a kitchen with a wood stove, and the whole of the forest. The house is let to one party at a time.</p>
+        <h3 class="label">Amenities</h3>
+        <ul class="amen">
+          <li>Open fireplaces &amp; wood stove</li>
+          <li>Freestanding bath</li>
+          <li>Private wood-fired sauna</li>
+          <li>Orchard &amp; walking trails</li>
+          <li>Library of some 900 books</li>
+          <li>Linen, wool blankets, firewood</li>
+        </ul>
+        <h3 class="label">Location</h3>
+        <p>Deep in an ancient woodland, some ninety minutes from the nearest town. Directions are sent with your confirmation.</p>
+      </div>
+
+      <form class="book reveal" id="bookForm" novalidate>
+        <div class="book__row">
+          <label class="field"><span class="label">Arrival date</span><input type="date" id="arrive" required></label>
+          <label class="field"><span class="label">Departure date</span><input type="date" id="depart" required></label>
+        </div>
+        <div class="book__row">
+          <div class="field">
+            <span class="label">Guests</span>
+            <div class="stepper" role="group" aria-label="Guests">
+              <button type="button" id="gMinus" aria-label="Fewer guests">−</button>
+              <output id="gCount">2</output>
+              <button type="button" id="gPlus" aria-label="More guests">+</button>
+            </div>
+          </div>
+          <label class="field"><span class="label">Accommodation</span>
+            <select id="acc">
+              <option value="house">The whole house</option>
+              <option value="library">The Library Wing (2 guests)</option>
+              <option value="orchard">The Orchard Room (2 guests)</option>
+            </select>
+          </label>
+        </div>
+        <div class="avail" id="avail" role="status" aria-live="polite">
+          <span class="avail__dot"></span><span id="availText">Choose your dates to check availability.</span>
+        </div>
+        <div class="book__row">
+          <label class="field"><span class="label">Name</span><input type="text" id="name" autocomplete="name" placeholder="Your name"></label>
+          <label class="field"><span class="label">Email</span><input type="email" id="email" autocomplete="email" placeholder="you@example.com"></label>
+        </div>
+        <button class="btn btn--solid btn--block" type="submit" id="bookBtn">Stay for a while</button>
+        <p class="book__note">A booking request — no payment is taken. We reply by letter within two days.</p>
+        <p class="book__done" id="bookDone" hidden></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <div>
+      <p class="footer__brand">FJERN SKOG</p>
+      <p class="footer__tag">A secluded residence in the woods.</p>
+    </div>
+    <nav aria-label="Footer" class="footer__nav">
+      <a href="#top">Fjern skog</a><a href="#house">The House</a><a href="#orchard">Orchard</a><a href="#sauna">Sauna</a><a href="#bath">Bath</a><a href="#gallery">Gallery</a><a href="#stay">Stay</a>
+    </nav>
+    <ul class="footer__contact">
+      <li><span class="label">Instagram</span><a href="https://instagram.com/fjernskog" rel="noopener">@fjernskog</a></li>
+      <li><span class="label">Email</span><a href="mailto:hello@fjernskog.example">hello@fjernskog.example</a></li>
+      <li><span class="label">Location</span>Deep in the woods, Norway</li>
+    </ul>
+  </div>
+  <p class="footer__legal">❦ &nbsp; © Fjern Skog. Photographs from Unsplash.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
