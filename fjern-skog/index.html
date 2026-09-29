@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fjern skog — a cabin with no signal</title>
+  <meta name="description" content="Fjern skog is a wooden cabin deep in the forest for people who are tired of notifications. A weekend or a week without your phone.">
+  <meta name="theme-color" content="#0f1a15">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="js/main.js"></script>
+</head>
+<body>
+
+<!-- SVG icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 3c1 3 4 5 4 9a4 4 0 0 1-8 0c0-2 1-3 2-4 0 2 1 2 2 2 0-3-1-4 0-7z"/></symbol>
+    <symbol id="i-pot" viewBox="0 0 24 24"><path d="M4 10h16v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-6zM2 10h20M9 6c0-1 1-1 1-2M14 6c0-1 1-1 1-2"/></symbol>
+    <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></symbol>
+    <symbol id="i-tree" viewBox="0 0 24 24"><path d="M12 3l5 7h-3l4 6H6l4-6H7l5-7zM12 16v5"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M5 4h10a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3V4zM5 17a3 3 0 0 1 3-3h10"/></symbol>
+    <symbol id="i-dice" viewBox="0 0 24 24"><path d="M4 4h16v16H4zM8 8h.01M16 8h.01M12 12h.01M8 16h.01M16 16h.01"/></symbol>
+    <symbol id="i-steam" viewBox="0 0 24 24"><path d="M8 20c-2-3 2-4 0-7s2-4 0-6M14 20c-2-3 2-4 0-7s2-4 0-6M19 20c-1.500-2 1-3 0-5"/></symbol>
+    <symbol id="i-bed" viewBox="0 0 24 24"><path d="M3 18V7M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5M7 11.500h.01"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M8 3h8a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zM11 18h2"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM12 2v2M12 20v2M2 12h2M20 12h2M4.900 4.900l1.400 1.400M17.700 17.700l1.400 1.400M4.900 19.100l1.400-1.400M17.700 6.300l1.400-1.400"/></symbol>
+    <symbol id="i-coffee" viewBox="0 0 24 24"><path d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9zM17 10h1.500a2.500 2.500 0 0 1 0 5H17M8 3v3M12 3v3"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14A8 8 0 0 1 10 4a8 8 0 1 0 10 10z"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  </defs>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header" id="header">
+  <a class="brand" href="#top" aria-label="Fjern skog — home">
+    <svg class="brand__mark" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-tree"/></svg>
+    <span>Fjern skog</span>
+  </a>
+  <nav class="nav" id="nav" aria-label="Main">
+    <a href="#house">The house</a>
+    <a href="#day">Your day</a>
+    <a href="#prices">Prices</a>
+    <a class="nav__book" href="booking.html">Book</a>
+  </nav>
+  <div class="signal" id="signal" role="img" aria-label="Signal strength: full">
+    <span class="signal__bars" aria-hidden="true">
+      <i></i><i></i><i></i><i></i>
+    </span>
+    <span class="signal__label" id="signal-label" aria-hidden="true">Signal</span>
+  </div>
+  <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav" aria-label="Menu">
+    <span></span><span></span>
+  </button>
+</header>
+
+<main id="main">
+
+  <!-- 1. HERO -->
+  <section class="hero" id="top">
+    <div class="hero__scene" aria-hidden="true">
+      <img class="layer layer--sky" src="assets/illustrations/hero-sky.svg" alt="" data-speed="0.32">
+      <img class="layer layer--back" src="assets/illustrations/hero-back.svg" alt="" data-speed="0.22">
+      <div class="hero__fog hero__fog--a"></div>
+      <img class="layer layer--mid" src="assets/illustrations/hero-mid.svg" alt="" data-speed="0.12">
+      <div class="hero__fog hero__fog--b"></div>
+      <img class="layer layer--front" src="assets/illustrations/hero-front.svg" alt="" data-speed="0.03">
+    </div>
+    <div class="hero__inner">
+      <p class="eyebrow">A cabin two hours from Oslo</p>
+      <h1>There is no signal here.<br><em>And that’s the point.</em></h1>
+      <p class="lead">A wooden house in the middle of the forest for people who are tired of notifications. A weekend or a week with a stove, a shelf of books and a lot of quiet.</p>
+      <div class="hero__cta">
+        <a class="btn btn--ember" href="booking.html">Choose your dates <svg class="ico"><use href="#i-arrow"/></svg></a>
+        <a class="link-arrow" href="#how">How it works ↓</a>
+      </div>
+      <p class="hero__meta">2 h from Oslo · up to 4 guests · phone stays in the chest</p>
+    </div>
+  </section>
+
+  <!-- 2. PROBLEM -->
+  <section class="section problem" id="problem">
+    <div class="wrap wrap--narrow">
+      <p class="eyebrow eyebrow--dark reveal">The problem</p>
+      <h2 class="reveal">When did you last spend an hour with yourself, screen off?</h2>
+      <div class="problem__text reveal">
+        <p>You pick up your phone “just for a second” to check one email.</p>
+        <p>An hour later you can’t remember what you were looking for.</p>
+        <p>The weekend is gone, and you don’t feel rested.</p>
+        <p class="problem__turn">It isn’t your fault. At home, notifications are simply louder than you are. So we took the signal away.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. HOW IT WORKS -->
+  <section class="section how" id="how">
+    <div class="wrap">
+      <p class="eyebrow eyebrow--dark reveal">How it works</p>
+      <h2 class="reveal">A very simple format</h2>
+      <ol class="steps">
+        <li class="step reveal">
+          <span class="step__num">01</span>
+          <h3>You arrive</h3>
+          <p>We greet you, show you around and put your phone in a wooden chest. For emergencies there is a landline.</p>
+        </li>
+        <li class="step reveal">
+          <span class="step__num">02</span>
+          <h3>You do nothing</h3>
+          <p>Light the stove, walk, read, cook, sleep. There is no schedule and no alarm clock.</p>
+        </li>
+        <li class="step reveal">
+          <span class="step__num">03</span>
+          <h3>You go back</h3>
+          <p>On the last morning we hand your phone back. Most guests admit they’re in no hurry to take it.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 4. HOUSE -->
+  <section class="section house" id="house">
+    <div class="wrap">
+      <div class="house__intro">
+        <div>
+          <p class="eyebrow eyebrow--dark reveal">The house</p>
+          <h2 class="reveal">A house that doesn’t ask for attention</h2>
+          <p class="reveal">A small wooden cabin at the edge of the forest. Two bedrooms, a kitchen with a big table, a living room with a stove and a porch where it’s easy to be silent together.</p>
+          <p class="reveal">There is no TV, no Wi-Fi and no sockets by the beds. There is plenty of light, wood and room for books.</p>
+        </div>
+        <figure class="ph ph--wide reveal" data-photo="assets/photos/house-wide.jpg">
+          <img src="assets/illustrations/cabin.svg" alt="Illustration of the cabin at dusk with lit windows and smoke from the chimney" loading="lazy">
+        </figure>
+      </div>
+
+      <ul class="amenities">
+        <li class="reveal"><svg class="ico"><use href="#i-flame"/></svg>Wood-burning stove</li>
+        <li class="reveal"><svg class="ico"><use href="#i-pot"/></svg>Fully equipped kitchen</li>
+        <li class="reveal"><svg class="ico"><use href="#i-drop"/></svg>Underfloor heating &amp; hot shower</li>
+        <li class="reveal"><svg class="ico"><use href="#i-tree"/></svg>Porch facing the forest</li>
+        <li class="reveal"><svg class="ico"><use href="#i-book"/></svg>Library of 200+ books</li>
+        <li class="reveal"><svg class="ico"><use href="#i-dice"/></svg>Board games, sketchbooks, easel</li>
+        <li class="reveal"><svg class="ico"><use href="#i-steam"/></svg>Sauna on request</li>
+        <li class="reveal"><svg class="ico"><use href="#i-bed"/></svg>Linen &amp; wool blankets</li>
+      </ul>
+
+      <div class="gallery" aria-label="Gallery">
+        <figure class="ph reveal" data-photo="assets/photos/exterior.jpg"><img src="assets/illustrations/tile-exterior.svg" alt="The cabin in morning fog" loading="lazy"><figcaption>Morning fog</figcaption></figure>
+        <figure class="ph reveal" data-photo="assets/photos/stove.jpg"><img src="assets/illustrations/tile-stove.svg" alt="The wood-burning stove with a live fire" loading="lazy"><figcaption>The stove</figcaption></figure>
+        <figure class="ph reveal" data-photo="assets/photos/porch.jpg"><img src="assets/illustrations/tile-porch.svg" alt="Two chairs and a cup of coffee on the porch" loading="lazy"><figcaption>The porch</figcaption></figure>
+        <figure class="ph reveal" data-photo="assets/photos/library.jpg"><img src="assets/illustrations/tile-library.svg" alt="A wall of bookshelves with a reading lamp" loading="lazy"><figcaption>The library</figcaption></figure>
+        <figure class="ph reveal" data-photo="assets/photos/lake.jpg"><img src="assets/illustrations/tile-lake.svg" alt="The lake at dawn with a small jetty" loading="lazy"><figcaption>The lake, 15 min away</figcaption></figure>
+        <figure class="ph reveal" data-photo="assets/photos/sky.jpg"><img src="assets/illustrations/tile-sky.svg" alt="Milky Way above the pine trees" loading="lazy"><figcaption>The sky at night</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. YOUR DAY -->
+  <section class="section day" id="day">
+    <div class="wrap wrap--narrow">
+      <p class="eyebrow eyebrow--dark reveal">Your day</p>
+      <h2 class="reveal">How a day goes by without a phone</h2>
+      <ol class="timeline">
+        <li class="reveal">
+          <span class="timeline__icon"><svg class="ico"><use href="#i-coffee"/></svg></span>
+          <div><h3>Morning</h3><p>You wake up to daylight, not an alarm. Coffee on the porch while the fog lifts.</p></div>
+        </li>
+        <li class="reveal">
+          <span class="timeline__icon"><svg class="ico"><use href="#i-sun"/></svg></span>
+          <div><h3>Afternoon</h3><p>A walk through the forest, the lake fifteen minutes away, a book, a nap in the hammock.</p></div>
+        </li>
+        <li class="reveal">
+          <span class="timeline__icon"><svg class="ico"><use href="#i-flame"/></svg></span>
+          <div><h3>Evening</h3><p>You feed the stove, cook dinner and lose (or win) a board game.</p></div>
+        </li>
+        <li class="reveal">
+          <span class="timeline__icon"><svg class="ico"><use href="#i-moon"/></svg></span>
+          <div><h3>Night</h3><p>Stars you can’t see from the city. You fall asleep before ten and are surprised by it.</p></div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 5b. NIGHT (flashlight) -->
+  <section class="night" id="night" aria-label="Night sky">
+    <div class="night__sky" aria-hidden="true"></div>
+    <div class="night__dark" id="night-dark" aria-hidden="true"></div>
+    <div class="night__content">
+      <p class="eyebrow">After dark</p>
+      <h2>At night, the only notification is the sky.</h2>
+      <p class="night__hint" id="night-hint">Move your cursor to find the light.</p>
+    </div>
+  </section>
+
+  <!-- 6. RULES -->
+  <section class="section rules" id="rules">
+    <div class="wrap wrap--narrow">
+      <p class="eyebrow reveal">Signal: none</p>
+      <h2 class="reveal">Five simple rules</h2>
+      <ol class="rules__list">
+        <li class="reveal"><span>1</span><p>Your phone and laptop stay in the chest from arrival to departure.</p></li>
+        <li class="reveal"><span>2</span><p>For emergencies there is a landline, and we live next door, 24/7.</p></li>
+        <li class="reveal"><span>3</span><p>Want photos? Borrow our film camera. It’s on the shelf by the door.</p></li>
+        <li class="reveal"><span>4</span><p>We don’t force anyone. If it gets hard, tell us and we’ll help.</p></li>
+        <li class="reveal"><span>5</span><p>Silence goes both ways: we won’t message you either.</p></li>
+      </ol>
+      <p class="rules__note reveal">These rules aren’t a punishment. They’re a gift to yourself.</p>
+    </div>
+  </section>
+
+  <!-- 7. PRICES -->
+  <section class="section prices" id="prices">
+    <div class="wrap">
+      <p class="eyebrow eyebrow--dark reveal">Prices</p>
+      <h2 class="reveal">What silence costs</h2>
+      <div class="cards">
+        <article class="card reveal">
+          <h3>Weekend</h3>
+          <p class="card__sub">2 nights</p>
+          <p class="card__price">€260</p>
+          <ul>
+            <li>The whole house</li>
+            <li>Firewood included</li>
+            <li>Basic pantry set</li>
+          </ul>
+          <a class="btn btn--line" href="booking.html?package=weekend">Choose dates</a>
+        </article>
+        <article class="card card--featured reveal">
+          <span class="card__tag">Most loved</span>
+          <h3>For two</h3>
+          <p class="card__sub">3 nights</p>
+          <p class="card__price">€420</p>
+          <ul>
+            <li>The whole house</li>
+            <li>Dinner cooked by your hosts</li>
+            <li>One sauna evening</li>
+          </ul>
+          <a class="btn btn--ember" href="booking.html?package=two">Choose dates</a>
+        </article>
+        <article class="card reveal">
+          <h3>Week</h3>
+          <p class="card__sub">7 nights</p>
+          <p class="card__price">€790</p>
+          <ul>
+            <li>The whole house</li>
+            <li>Firewood &amp; pantry set</li>
+            <li>One sauna evening</li>
+          </ul>
+          <a class="btn btn--line" href="booking.html?package=week">Choose dates</a>
+        </article>
+      </div>
+      <p class="prices__note reveal">Prices are for the entire house, up to 4 guests. Any other length of stay is €130 per night.</p>
+    </div>
+  </section>
+
+  <!-- 8. GETTING THERE -->
+  <section class="section there" id="there">
+    <div class="wrap there__grid">
+      <div>
+        <p class="eyebrow eyebrow--dark reveal">Getting there</p>
+        <h2 class="reveal">The road takes two hours</h2>
+        <p class="reveal">120 km from Oslo. The last five kilometres are a forest track where GPS usually goes quiet, so we send you a written route in advance.</p>
+        <p class="reveal">We can also meet you at the station and drive you up. Just tell us when you book.</p>
+        <a class="btn btn--line reveal" href="booking.html#details">Ask for the route</a>
+      </div>
+      <figure class="map reveal">
+        <img src="assets/illustrations/map.svg" alt="Stylised map: a road from Oslo winds into the forest and ends at the cabin" loading="lazy">
+        <span class="map__pin map__pin--from">Oslo</span>
+        <span class="map__pin map__pin--to">Fjern skog</span>
+        <span class="map__pin map__pin--gps">GPS goes quiet here</span>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 9. TESTIMONIALS -->
+  <section class="section quotes" id="quotes">
+    <div class="wrap">
+      <p class="eyebrow eyebrow--dark reveal">Guests</p>
+      <h2 class="reveal">What people say afterwards</h2>
+      <div class="quotes__grid">
+        <blockquote class="reveal"><p>“For the first time in two years I read a book. Just read it.”</p><footer>Elin, designer</footer></blockquote>
+        <blockquote class="reveal"><p>“I thought I’d be bored. It was the best boredom of my life.”</p><footer>Andreas, developer</footer></blockquote>
+        <blockquote class="reveal"><p>“My husband and I finally talked. Not about logistics.”</p><footer>Marte, lawyer</footer></blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. FAQ -->
+  <section class="section faq" id="faq">
+    <div class="wrap wrap--narrow">
+      <p class="eyebrow eyebrow--dark reveal">Questions</p>
+      <h2 class="reveal">The ones you haven’t asked yet</h2>
+      <div class="faq__list">
+        <details class="reveal"><summary>What if something happens and I don’t have my phone?<svg class="ico"><use href="#i-plus"/></svg></summary><p>There is a landline in the hall, and we’re next door around the clock.</p></details>
+        <details class="reveal"><summary>Do I really have to hand in my phone?<svg class="ico"><use href="#i-plus"/></svg></summary><p>Yes, it’s the heart of the format. If you need it, ask for “emergency mode”: one call a day, at the porch.</p></details>
+        <details class="reveal"><summary>Can I bring children?<svg class="ico"><use href="#i-plus"/></svg></summary><p>Yes, from age 6. There are books, board games and a whole forest for them.</p></details>
+        <details class="reveal"><summary>What about a dog?<svg class="ico"><use href="#i-plus"/></svg></summary><p>Dogs are welcome by arrangement. Tell us when you book.</p></details>
+        <details class="reveal"><summary>What should I pack?<svg class="ico"><use href="#i-plus"/></svg></summary><p>Warm clothes, a book you’ve been meaning to read and comfortable shoes. We have the rest.</p></details>
+        <details class="reveal"><summary>What about food?<svg class="ico"><use href="#i-plus"/></svg></summary><p>A basic pantry set is waiting for you. Dinner cooked by your hosts can be added when you book.</p></details>
+        <details class="reveal"><summary>How do I cancel?<svg class="ico"><use href="#i-plus"/></svg></summary><p>Free of charge up to 7 days before arrival.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. FINAL CTA -->
+  <section class="cta" id="book">
+    <div class="cta__inner wrap wrap--narrow">
+      <h2 class="reveal">Ready to switch off?</h2>
+      <p class="reveal">Pick your dates and we’ll confirm within a day. No online prepayment.</p>
+      <a class="btn btn--ember btn--lg reveal" href="booking.html">Choose your dates <svg class="ico"><use href="#i-arrow"/></svg></a>
+    </div>
+  </section>
+</main>
+
+<!-- 12. FOOTER -->
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <div>
+      <p class="footer__brand">Fjern skog</p>
+      <p class="footer__small">Norwegian for “distant forest”.</p>
+    </div>
+    <address>
+      Fjern skog, Telemark, Norway<br>
+      <a href="mailto:hello@fjernskog.example">hello@fjernskog.example</a><br>
+      Landline: +47 00 00 00 00
+    </address>
+    <p class="footer__signal" aria-label="Signal: none"><span class="signal__bars signal__bars--off" aria-hidden="true"><i></i><i></i><i></i><i></i></span> Signal: none</p>
+  </div>
+  <p class="footer__legal wrap">Portfolio case study. The place, prices and people are fictional; illustrations are drawn for this project.</p>
+</footer>
+
+</body>
+</html>
