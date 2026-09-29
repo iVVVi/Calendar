@@ -22,6 +22,7 @@ python3 -m http.server 8000   # or any static server
 | `js/booking.js` | Booking logic. Prices, rules and demo "booked" dates live in `CONFIG` at the top |
 | `assets/illustrations/` | Generated SVG illustrations (`python3 tools/generate-illustrations.py` rebuilds them) |
 | `assets/photos/` | Optional stock photos (see below) |
+| `fjern-skog.html` | Single-file build of the whole site (`python3 tools/build-single.py`) |
 
 ## Stock photos
 
