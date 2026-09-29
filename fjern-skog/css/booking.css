@@ -15,7 +15,7 @@
 
 /* ---------- Packages ---------- */
 .packages { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-.pkg { display: grid; gap: 4px; text-align: left; padding: 18px 20px; background: var(--bone); border: 1.5px solid var(--line); border-radius: 14px; cursor: pointer; transition: border-color .2s, background .2s, transform .2s var(--ease), box-shadow .2s; }
+.pkg { display: grid; gap: 4px; text-align: left; padding: 18px 20px; background: var(--bone); border: 1.5px solid var(--line); border-radius: 3px; cursor: pointer; transition: border-color .2s, background .2s, transform .2s var(--ease), box-shadow .2s; }
 .pkg:hover { border-color: var(--ink); transform: translateY(-2px); }
 .pkg[aria-checked="true"] { border-color: var(--ember); background: #fff; box-shadow: 0 0 0 1.5px var(--ember) inset; }
 .pkg__name { font: 400 1.25rem var(--font-display); }
@@ -70,7 +70,7 @@
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .field label { font-weight: 600; font-size: .92rem; }
 .field .opt { font-weight: 400; color: var(--ink-soft); font-size: .84rem; }
-.field input, .field textarea { width: 100%; font: inherit; color: var(--ink); background: var(--bone); border: 1.5px solid var(--line); border-radius: 12px; padding: 14px 16px; transition: border-color .2s, box-shadow .2s; }
+.field input, .field textarea { width: 100%; font: inherit; color: var(--ink); background: var(--bone); border: 1.5px solid var(--line); border-radius: 3px; padding: 14px 16px; transition: border-color .2s, box-shadow .2s; }
 .field textarea { resize: vertical; min-height: 96px; }
 .field input:hover, .field textarea:hover { border-color: rgba(23, 33, 27, .4); }
 .field input:focus, .field textarea:focus { outline: none; border-color: var(--ember); box-shadow: 0 0 0 4px rgba(224, 120, 46, .18); }
@@ -80,14 +80,14 @@
 .field--inline { display: flex; align-items: center; flex-wrap: wrap; gap: 14px 20px; margin-bottom: 26px; }
 .field__note { color: var(--ink-soft); font-size: .88rem; }
 
-.stepper { display: inline-flex; align-items: center; border: 1.5px solid var(--line); border-radius: 999px; background: var(--bone); }
+.stepper { display: inline-flex; align-items: center; border: 1.5px solid var(--line); border-radius: 3px; background: var(--bone); }
 .stepper__btn { width: 44px; height: 44px; border: 0; background: none; border-radius: 50%; font: 400 1.4rem/1 var(--font-body); cursor: pointer; transition: background .2s; }
 .stepper__btn:hover:not(:disabled) { background: rgba(224, 120, 46, .16); }
 .stepper__btn:disabled { opacity: .3; cursor: default; }
 .stepper__val { min-width: 34px; text-align: center; font-weight: 600; }
 
 .extras { display: grid; gap: 10px; margin-bottom: 30px; }
-.check { display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: var(--bone); border: 1.5px solid var(--line); border-radius: 12px; cursor: pointer; transition: border-color .2s, background .2s; }
+.check { display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: var(--bone); border: 1.5px solid var(--line); border-radius: 3px; cursor: pointer; transition: border-color .2s, background .2s; }
 .check:hover { border-color: rgba(23, 33, 27, .4); }
 .check input { position: absolute; opacity: 0; pointer-events: none; }
 .check__box { width: 22px; height: 22px; flex: none; border: 1.5px solid var(--ink-soft); border-radius: 6px; position: relative; transition: background .2s, border-color .2s; }
@@ -153,6 +153,11 @@
 .footer--slim .footer__brand { font-size: 1.3rem; }
 
 /* ---------- Responsive ---------- */
+@media (min-width: 701px) and (max-width: 1000px) {
+  .packages { grid-template-columns: repeat(4, 1fr); }
+  .pkg { padding: 16px 14px; }
+  .pkg__meta { font-size: .78rem; }
+}
 @media (max-width: 1000px) {
   .booking__grid { grid-template-columns: 1fr; }
   .summary { position: static; order: 2; }

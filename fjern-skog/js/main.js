@@ -119,7 +119,7 @@
         ty = clamp((e.clientY - r.top) / r.height, 0, 1);
         if (!coarse && hint) hint.style.opacity = '0';
       });
-      if (coarse && hint) hint.textContent = 'Follow the light.';
+      if (coarse && hint) hint.textContent = 'Follow the flame.';
     }
   }
 
